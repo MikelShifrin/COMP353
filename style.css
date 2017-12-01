@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*TABLES*/
+table,th,td {
+    border : 1px solid black;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+th {
+    padding: 3px;
+    background-color: #CAE9FD /*rgba(135, 206, 250, 0.35);*/
+}
+td {
+    padding: 3px;
+    background-color: white;
+}
