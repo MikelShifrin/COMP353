@@ -78,7 +78,7 @@ if($link === false){
             <select name="city" required>
                 <option value=""></option>
                 <?php
-                $sql = mysqli_query($link, "SELECT cityName FROM Address");
+                $sql = mysqli_query($link, "SELECT DISTINCT cityName FROM Address");
                 while ($row = $sql->fetch_assoc()){
                     echo "<option value=" . $row['cityName'] . ">" . $row['cityName'] . "</option>";
                 }
