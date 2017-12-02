@@ -11,7 +11,7 @@ require_once("classes/Login.php");
 	if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-   	include("views/sell_view.php");
+   	include("views/sell_clothes_view.php");
 
 } else {
     // the user is not logged in. you can do whatever you want here.
