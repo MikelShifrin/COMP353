@@ -31,6 +31,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Buy <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="buy_user.php">Buy (User)</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
@@ -63,7 +66,7 @@ if($link === false){
         <fieldset>
             <legend>Buy an Ad</legend>
             <label>Category:</label>
-            <select name = "category">
+            <select name = "category" required>
                 <option value=""></option>
                 <option value="Clothes">Clothes</option>
                 <option value="Books">Books</option>
@@ -72,7 +75,7 @@ if($link === false){
             </select>
             <br><br>
             <label>City:</label>
-            <select name="city">
+            <select name="city" required>
                 <option value=""></option>
                 <?php
                 $sql = mysqli_query($link, "SELECT cityName FROM Address");
