@@ -26,7 +26,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="sell.php">Stuff</a>
                     </li>
-				    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="buy.php">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buy_user.php">Buy (User)</a>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Sell
                         </a>
