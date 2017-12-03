@@ -138,6 +138,7 @@
 		
 		
 		<div class=container>
+            <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="delete_form">
 			<table class="table table-hover table-bordered table-responsive table-striped" id="table">
 				<thead>
 					<tr>
@@ -149,6 +150,7 @@
 						<th scope="col">Type</th>
 						<th scope="col">Date</th>
 						<th scope="col">cType</th>
+                        <th scope="col">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -164,10 +166,11 @@
 					</tr>
 				</tbody>
 			</table>
+            </form>
 		</div class=container>
 		<?php
 			function fillTable(){
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				$queryGetElectronics = "SELECT * FROM Electronics";
 				$passQuery = mysqli_query($db_connection , $queryGetElectronics);
 				mysqli_close($db_connection);
@@ -182,6 +185,7 @@
 						++$inc;
 						
 				echo	"
+                        var form = document.getElementById('delete_form');
 						var table = document.getElementById('table');
 						var row = table.insertRow();
 						var cell1 = row.insertCell();
@@ -192,6 +196,16 @@
 						var cell6 = row.insertCell();
 						var cell7 = row.insertCell();
 						var cell8 = row.insertCell();
+						var cell9 = row.insertCell();
+						var b = document.createElement(\"BUTTON\");
+                        var d = document.createTextNode(\"Delete\");
+                        b.id = '".$rowAllProvinces['eID']."';
+                        b.setAttribute('value', '".$rowAllProvinces['eID']."');
+                        b.setAttribute('name', 'btn');
+                        b.setAttribute('type', 'submit');
+
+               
+                        b.appendChild(d);
 						
 						
 	
@@ -202,7 +216,8 @@
 						cell5.innerHTML = '".$rowAllProvinces['title']."';
 						cell6.innerHTML = '".$rowAllProvinces['type']."';
 						cell7.innerHTML = '".$rowAllProvinces['date']."';
-						cell8.innerHTML = '".$rowAllProvinces['cType']."';";
+						cell8.innerHTML = '".$rowAllProvinces['cType']."';
+						cell9.appendChild(b);";
 					};
 				echo "</script>	   ";
 			}
@@ -230,7 +245,7 @@
 		<?php
 
 			function provinceDropdown(){
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				$queryFindProvince = "SELECT DISTINCT cityName FROM City ORDER BY cityName";
 				$passQuery = mysqli_query($db_connection , $queryFindProvince);
 				mysqli_close($db_connection);
@@ -318,7 +333,7 @@
 				$addressID = uniqid();
 				$adID = uniqid();
 
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				
 				$queryAddClothes="insert into Electronics (eID,price,rating,descr,title,type,date,cType) values ('".$eID."', '".$_POST['price']."','". $_POST['rating'] ."','".$_POST['description']."','".$_POST['title']."','".$_POST['type']."','".$_POST['startDate']."','Buy and Sell')";
 				$queryAddAddress="insert into Address (addressID,street,pCode,streetNo,cityName) values ('".$addressID."', '".$_POST['streetName']."','".$_POST['postalCode']."','".$_POST['streetNumber']."','".$_POST['city']."')";
@@ -354,5 +369,22 @@
 
 		?>
 
+        <?php
+        function deleteAd()
+        {
+            $db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
+            if (isset($_POST['btn'])) {
+                $eID = $_POST['btn'];
+                $queryDeleteElec = "delete from Electronics where eID = '" . $eID . "'";
+                $queryDeleteAd = "delete from Ad where eID = '" . $eID . "'";
+
+                $ret = mysqli_query($db_connection, $queryDeleteElec);
+                $ret1 = mysqli_query($db_connection, $queryDeleteAd);
+
+
+            }
+        }
+        deleteAd();
+        ?>
     </body>
 </html>

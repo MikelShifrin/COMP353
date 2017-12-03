@@ -137,6 +137,7 @@
 		<br><br>
 		
 		<div class=container>
+            <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="delete_form">
 			<table class="table table-hover table-bordered table-responsive table-striped" id="table">
 				<thead>
 					<tr>
@@ -148,7 +149,6 @@
 						<th scope="col">Type</th>
 						<th scope="col">Date</th>
 						<th scope="col">cType</th>
-                        <th scope="col">cID</th>
                         <th scope="col">Delete</th>
 					</tr>
 				</thead>
@@ -165,6 +165,7 @@
 					</tr>
 				</tbody>
 			</table>
+            </form>
 		</div class=container>
 		<?php
 			function fillTable(){
@@ -183,6 +184,7 @@
 						++$inc;
 						
 				echo	"
+				        var form = document.getElementById('delete_form');
 						var table = document.getElementById('table');
 						var row = table.insertRow();
 						var cell1 = row.insertCell();
@@ -194,13 +196,12 @@
 						var cell7 = row.insertCell();
 						var cell8 = row.insertCell();
 						var cell9 = row.insertCell();
-						var cell10 = row.insertCell();
 						var b = document.createElement(\"BUTTON\");
                         var d = document.createTextNode(\"Delete\");
                         b.id = '".$rowAllProvinces['cID']."';
-                        b.setAttribute('onclick', 'delete()');
                         b.setAttribute('value', '".$rowAllProvinces['cID']."');
-                        b.setAttribute('name', 'button');
+                        b.setAttribute('name', 'btn');
+                        b.setAttribute('type', 'submit');
 
                
                         b.appendChild(d);
@@ -215,8 +216,8 @@
 						cell6.innerHTML = '".$rowAllProvinces['type']."';
 						cell7.innerHTML = '".$rowAllProvinces['date']."';
 						cell8.innerHTML = '".$rowAllProvinces['cType']."';
-						cell9.innerHTML = '".$rowAllProvinces['cID']."';
-				        cell10.appendChild(b);";
+						cell9.appendChild(b);";
+
 
 					};
 				echo "</script>	   ";
@@ -370,20 +371,22 @@
 		?>
 
         <?php
-
-        function delete()
+        function deleteAd()
         {
             $db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
-            if(isset($_POST['button'])) {
-                $cID = $_POST['button'];
-                $queryDeleteClothes = "delete from Clothes where cID = '".$cID."'";
-                $queryDeleteAd = "delete from Ad where cID = '".$cID."'";
+            if (isset($_POST['btn'])) {
+                $cID = $_POST['btn'];
+                $queryDeleteClothes = "delete from Clothes where cID = '" . $cID . "'";
+                $queryDeleteAd = "delete from Ad where cID = '" . $cID . "'";
 
                 $ret = mysqli_query($db_connection, $queryDeleteClothes);
-                $ret1 =mysqli_query($db_connection, $queryDeleteAd);
-            }
+                $ret1 = mysqli_query($db_connection, $queryDeleteAd);
 
+
+            }
         }
+        deleteAd();
         ?>
+
     </body>
 </html>
