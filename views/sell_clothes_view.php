@@ -148,6 +148,8 @@
 						<th scope="col">Type</th>
 						<th scope="col">Date</th>
 						<th scope="col">cType</th>
+                        <th scope="col">cID</th>
+                        <th scope="col">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -166,7 +168,7 @@
 		</div class=container>
 		<?php
 			function fillTable(){
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				$queryGetClothes = "SELECT * FROM Clothes";
 				$passQuery = mysqli_query($db_connection , $queryGetClothes);
 				mysqli_close($db_connection);
@@ -191,7 +193,18 @@
 						var cell6 = row.insertCell();
 						var cell7 = row.insertCell();
 						var cell8 = row.insertCell();
-						
+						var cell9 = row.insertCell();
+						var cell10 = row.insertCell();
+						var b = document.createElement(\"BUTTON\");
+                        var d = document.createTextNode(\"Delete\");
+                        b.id = '".$rowAllProvinces['cID']."';
+                        b.setAttribute('onclick', 'delete()');
+                        b.setAttribute('value', '".$rowAllProvinces['cID']."');
+                        b.setAttribute('name', 'button');
+
+               
+                        b.appendChild(d);
+                        
 						
 	
 						cell1.outerHTML = '<th>' + ".$inc." + '</th>';
@@ -201,7 +214,10 @@
 						cell5.innerHTML = '".$rowAllProvinces['title']."';
 						cell6.innerHTML = '".$rowAllProvinces['type']."';
 						cell7.innerHTML = '".$rowAllProvinces['date']."';
-						cell8.innerHTML = '".$rowAllProvinces['cType']."';";
+						cell8.innerHTML = '".$rowAllProvinces['cType']."';
+						cell9.innerHTML = '".$rowAllProvinces['cID']."';
+				        cell10.appendChild(b);";
+
 					};
 				echo "</script>	   ";
 			}
@@ -229,7 +245,7 @@
 		<?php
 
 			function provinceDropdown(){
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				$queryFindProvince = "SELECT DISTINCT cityName FROM City ORDER BY cityName";
 				$passQuery = mysqli_query($db_connection , $queryFindProvince);
 				mysqli_close($db_connection);
@@ -317,7 +333,7 @@
 				$addressID = uniqid();
 				$adID = uniqid();
 
-				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
 				
 				$queryAddClothes="insert into Clothes (cID,price,rating,descr,title,type,date,cType) values ('".$cID."', '".$_POST['price']."','". $_POST['rating'] ."','".$_POST['description']."','".$_POST['title']."','".$_POST['type']."','".$_POST['startDate']."','Buy and Sell')";
 				$queryAddAddress="insert into Address (addressID,street,pCode,streetNo,cityName) values ('".$addressID."', '".$_POST['streetName']."','".$_POST['postalCode']."','".$_POST['streetNumber']."','".$_POST['city']."')";
@@ -353,5 +369,21 @@
 
 		?>
 
+        <?php
+
+        function delete()
+        {
+            $db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
+            if(isset($_POST['button'])) {
+                $cID = $_POST['button'];
+                $queryDeleteClothes = "delete from Clothes where cID = '".$cID."'";
+                $queryDeleteAd = "delete from Ad where cID = '".$cID."'";
+
+                $ret = mysqli_query($db_connection, $queryDeleteClothes);
+                $ret1 =mysqli_query($db_connection, $queryDeleteAd);
+            }
+
+        }
+        ?>
     </body>
 </html>
