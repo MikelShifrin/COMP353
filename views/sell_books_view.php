@@ -3,7 +3,7 @@
     <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Sell - Clothes</title>
+		<title>Sell - Books</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         
@@ -45,9 +45,9 @@
                     <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
                 </form>
             </div>
-        </nav>
-        
+        </nav>        
 		<br><br>
+
 		<!--
 		<div class="container ">
 			<div class="jumbotron">
@@ -56,7 +56,7 @@
 				<!-- Button trigger modal -->
 		<div class=container>
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-				Add Clothes
+				Add Books
 			</button>
 		</div>
 		<!-- Modal -->
@@ -64,7 +64,7 @@
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Add Clothes</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Add Books</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -133,8 +133,7 @@
 			</div>
 		</div>
 		-->
-		
-		<br><br>
+<br><br>
 		
 		<div class=container>
 			<table class="table table-hover table-bordered table-responsive table-striped" id="table">
@@ -167,8 +166,8 @@
 		<?php
 			function fillTable(){
 				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
-				$queryGetClothes = "SELECT * FROM Clothes";
-				$passQuery = mysqli_query($db_connection , $queryGetClothes);
+				$queryGetBooks = "SELECT * FROM Books";
+				$passQuery = mysqli_query($db_connection , $queryGetBooks);
 				mysqli_close($db_connection);
 				$classes_sections = array();
 				$inc = 0;
@@ -206,7 +205,7 @@
 				echo "</script>	   ";
 			}
 			fillTable();
-		?>
+		?>		
 		
 		<script>
 			var d = new Date();
@@ -313,13 +312,13 @@
 			function submit()
 			{
 
-				$cID = uniqid();
+				$bID = uniqid();
 				$addressID = uniqid();
 				$adID = uniqid();
 
 				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
 				
-				$queryAddClothes="insert into Clothes (cID,price,rating,descr,title,type,date,cType) values ('".$cID."', '".$_POST['price']."','". $_POST['rating'] ."','".$_POST['description']."','".$_POST['title']."','".$_POST['type']."','".$_POST['startDate']."','Buy and Sell')";
+				$queryAddClothes="insert into Books (bID,price,rating,descr,title,type,date,cType) values ('".$bID."', '".$_POST['price']."','". $_POST['rating'] ."','".$_POST['description']."','".$_POST['title']."','".$_POST['type']."','".$_POST['startDate']."','Buy and Sell')";
 				$queryAddAddress="insert into Address (addressID,street,pCode,streetNo,cityName) values ('".$addressID."', '".$_POST['streetName']."','".$_POST['postalCode']."','".$_POST['streetNumber']."','".$_POST['city']."')";
 				$queryGetUID="select uID from User where email='".$_SESSION['user_email']."'";
 				
@@ -332,7 +331,7 @@
 
 		
 				//$queryAddAd="insert into Ad(adID,isPromo,startDate,endDate,userID,addressID,cID) values ('".$adID."','false','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$cID."')";
-				$queryAddAd="insert into Ad(adID,startDate,endDate,userId,addressID,cID) values ('".$adID."','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$cID."')";
+				$queryAddAd="insert into Ad(adID,startDate,endDate,userId,addressID,bID) values ('".$adID."','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$bID."')";
 
 				$ret3 =mysqli_query($db_connection, $queryAddAd);		
 
