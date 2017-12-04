@@ -21,48 +21,43 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a class="navbar-brand" href="#">NavBar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="index.php">NavBar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="sell.php">Sell</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="buy.php">Buy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Buy (User) <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="index.php?logout">
-            <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
-        </form>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buy.php">Buy</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="buy_user.php">Buy (User)<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sell
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="sell_clothes.php">Clothes</a>
+                        <a class="dropdown-item" href="sell_books.php">Books</a>
+                        <a class="dropdown-item" href="sell_musical_instruments.php">Musical Instruments</a>
+                        <a class="dropdown-item" href="sell_electronics.php">Electronics</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="index.php?logout">
+                <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
+            </form>
+        </div>
+    </nav>
 <?php
 // Attempt MySQL server connection
-$link = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
+$link = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
 
 // Check connection
 if ($link === false) {

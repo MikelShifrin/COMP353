@@ -6,7 +6,7 @@
 		<title>Sell - Books</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        
+
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -20,8 +20,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="buy.php">Buy</a>
@@ -29,9 +29,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="buy_user.php">Buy (User)</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Sell
+                            <span class="sr-only">(current)</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="sell_clothes.php">Clothes</a>
@@ -45,14 +46,14 @@
                     <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
                 </form>
             </div>
-        </nav>        
+        </nav>
 		<br><br>
 
 		<!--
 		<div class="container ">
 			<div class="jumbotron">
-				<h1>Add Clothes</h1> 
-		-->		
+				<h1>Add Clothes</h1>
+		-->
 				<!-- Button trigger modal -->
 		<div class=container>
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -69,7 +70,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">		
+					<div class="modal-body">
 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return" method="post" name="myForm">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Price</label>
@@ -84,7 +85,7 @@
 									<option>4</option>
 									<option>5</option>
 								</select>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Description</label>
 								<textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="60" required></textarea>
@@ -104,7 +105,7 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">End Date</label>
 								<input name="endDate" id="endDate" class="form-control" type="date" required>
-							</div>  
+							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Street Name</label>
 								<input type="input" class="form-control" id=""  placeholder="Enter Street Name" name='streetName' required>
@@ -118,7 +119,7 @@
 								<input type="number" class="form-control" id=""  placeholder="Enter Street Number" name='streetNumber' required>
 							</div>
 							<div class='form-group' id = 'container'>
-							</div>  
+							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>
@@ -128,13 +129,13 @@
 					</div>
 				</div>
 			</div>
-		</div>		
-		<!--		
+		</div>
+		<!--
 			</div>
 		</div>
 		-->
 <br><br>
-		
+
 		<div class=container>
             <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="delete_form">
 			<table class="table table-hover table-bordered table-responsive table-striped" id="table">
@@ -146,7 +147,8 @@
 						<th scope="col">Description</th>
 						<th scope="col">Title</th>
 						<th scope="col">Type</th>
-						<th scope="col">Date</th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
 						<th scope="col">cType</th>
                         <th scope="col">Delete</th>
 					</tr>
@@ -161,6 +163,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
@@ -168,8 +171,9 @@
 		</div class=container>
 		<?php
 			function fillTable(){
-				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
-				$queryGetBooks = "SELECT * FROM Books";
+				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+				$queryGetBooks = "SELECT Books.price,Books.rating,Books.descr,Books.title,Books.type,Books.date,Books.cType,Books.bID,Ad.bID as Ad,Ad.userID,Ad.startDate,Ad.endDate FROM (Books INNER JOIN Ad ON Books.bID=Ad.bID) INNER JOIN User ON Ad.userID=User.uID WHERE User.email='".$_SESSION['user_email']."'";
+				//$queryGetBooks = "SELECT * FROM Books";
 				$passQuery = mysqli_query($db_connection , $queryGetBooks);
 				mysqli_close($db_connection);
 				$classes_sections = array();
@@ -178,10 +182,10 @@
 				echo "
 				<script>
 					";
-					while( $rowAllProvinces = mysqli_fetch_assoc( $passQuery))
-					{ 
+					while( $rowAllProvinces = mysqli_fetch_array( $passQuery))
+					{
 						++$inc;
-						
+
 				echo	"
                         var form = document.getElementById('delete_form');
 						var table = document.getElementById('table');
@@ -195,6 +199,7 @@
 						var cell7 = row.insertCell();
 						var cell8 = row.insertCell();
 						var cell9 = row.insertCell();
+                        var cell10= row.insertCell();
 						var b = document.createElement(\"BUTTON\");
                         var d = document.createTextNode(\"Delete\");
                         b.id = '".$rowAllProvinces['bID']."';
@@ -202,23 +207,23 @@
                         b.setAttribute('name', 'btn');
                         b.setAttribute('type', 'submit');
                         b.appendChild(d);
-						
-	
+
 						cell1.outerHTML = '<th>' + ".$inc." + '</th>';
 						cell2.innerHTML = '".$rowAllProvinces['price']."';
 						cell3.innerHTML = '".$rowAllProvinces['rating']."';
 						cell4.innerHTML = '".$rowAllProvinces['descr']."';
 						cell5.innerHTML = '".$rowAllProvinces['title']."';
 						cell6.innerHTML = '".$rowAllProvinces['type']."';
-						cell7.innerHTML = '".$rowAllProvinces['date']."';
-						cell8.innerHTML = '".$rowAllProvinces['cType']."';
-                        cell9.appendChild(b);";
+						cell7.innerHTML = '".$rowAllProvinces['startDate']."';
+						cell8.innerHTML = '".$rowAllProvinces['endDate']."';
+						cell9.innerHTML = '".$rowAllProvinces['cType']."';
+                        cell10.appendChild(b);";
 					};
 				echo "</script>	   ";
 			}
 			fillTable();
-		?>		
-		
+		?>
+
 		<script>
 			var d = new Date();
 			var date = d.getDate();
@@ -228,19 +233,19 @@
 			{
 				var date = "0" + date;
 			}
-			
+
 			if(month < 10)
 			{
 				var month = "0" + month;
 			}
-			
+
 			document.getElementById("startDate").value = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + date ;
 		</script>
-		
+
 		<?php
 
 			function provinceDropdown(){
-				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
+				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
 				$queryFindProvince = "SELECT DISTINCT cityName FROM City ORDER BY cityName";
 				$passQuery = mysqli_query($db_connection , $queryFindProvince);
 				mysqli_close($db_connection);
@@ -296,16 +301,16 @@
 			}
 			provinceDropdown();
 		?>
-	
 
-		<?php 
+
+		<?php
 
 			if(isset($_POST['price']))
 			{
-				
+
 				/*
 				echo "<table>";
-				foreach ($_POST as $key => $value) 
+				foreach ($_POST as $key => $value)
 				{
 					echo "<tr>";
 					echo "<td>";
@@ -320,7 +325,7 @@
 				*/
 				submit();
 			}
-	
+
 			function submit()
 			{
 
@@ -328,45 +333,47 @@
 				$addressID = uniqid();
 				$adID = uniqid();
 
-				$db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017","tvc353_2");
-				
+				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
+
 				$queryAddClothes="insert into Books (bID,price,rating,descr,title,type,date,cType) values ('".$bID."', '".$_POST['price']."','". $_POST['rating'] ."','".$_POST['description']."','".$_POST['title']."','".$_POST['type']."','".$_POST['startDate']."','Buy and Sell')";
 				$queryAddAddress="insert into Address (addressID,street,pCode,streetNo,cityName) values ('".$addressID."', '".$_POST['streetName']."','".$_POST['postalCode']."','".$_POST['streetNumber']."','".$_POST['city']."')";
 				$queryGetUID="select uID from User where email='".$_SESSION['user_email']."'";
-				
+
 
 				$ret = mysqli_query($db_connection, $queryAddClothes);
-				$ret1 =mysqli_query($db_connection, $queryAddAddress); 
-				$ret2 =mysqli_query($db_connection, $queryGetUID);  
-		
+				$ret1 =mysqli_query($db_connection, $queryAddAddress);
+				$ret2 =mysqli_query($db_connection, $queryGetUID);
+
 				$rowAllUID = mysqli_fetch_assoc($ret2);
 
-		
+
 				//$queryAddAd="insert into Ad(adID,isPromo,startDate,endDate,userID,addressID,cID) values ('".$adID."','false','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$cID."')";
-				$queryAddAd="insert into Ad(adID,startDate,endDate,userId,addressID,bID) values ('".$adID."','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$bID."')";
+				$queryAddAd="insert into Ad(adID,isPromo,startDate,endDate,userId,addressID,bID) values ('".$adID."',b'0','".$_POST['startDate']."','".$_POST['endDate']."','".$rowAllUID['uID']."','".$addressID."','".$bID."')";
 
-				$ret3 =mysqli_query($db_connection, $queryAddAd);		
+				$ret3 =mysqli_query($db_connection, $queryAddAd);
 
-				if(!$ret) 
+				if(!$ret)
 				{
 					mysqli_close($db_connection);
 					echo "connection failed";
 					return false;
 				}
-				
-				if(!$ret1) 
+
+				if(!$ret1)
 				{
 					mysqli_close($db_connection);
 					echo "connection failed to address";
 					return false;
 				}
+                //echo "<script>location.reload(true);</script>";
+                echo "<script>window.location.href=window.location.href;</script>";
 			}
 
 		?>
         <?php
         function deleteAd()
         {
-            $db_connection = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
+            $db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
             if (isset($_POST['btn'])) {
                 $bID = $_POST['btn'];
                 $queryDeleteBooks = "delete from Books where bID = '" . $bID . "'";
