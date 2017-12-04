@@ -145,13 +145,15 @@
 						<th scope="col">Description</th>
 						<th scope="col">Title</th>
 						<th scope="col">Type</th>
-						<th scope="col">Date</th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
 						<th scope="col">cType</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr hidden>
 						<th scope="row"></th>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -166,7 +168,8 @@
 		<?php
 			function fillTable(){
 				$db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017","tvc353_2");
-				$queryGetBooks = "SELECT * FROM Books";
+				$queryGetBooks = "SELECT Books.price,Books.rating,Books.descr,Books.title,Books.type,Books.date,Books.cType,Books.bID,Ad.bID as Ad,Ad.userID,Ad.startDate,Ad.endDate FROM (Books INNER JOIN Ad ON Books.bID=Ad.bID) INNER JOIN User ON Ad.userID=User.uID WHERE User.email='".$_SESSION['user_email']."'";
+				//$queryGetBooks = "SELECT * FROM Books";
 				$passQuery = mysqli_query($db_connection , $queryGetBooks);
 				mysqli_close($db_connection);
 				$classes_sections = array();
@@ -175,7 +178,7 @@
 				echo "
 				<script>
 					";
-					while( $rowAllProvinces = mysqli_fetch_assoc( $passQuery))
+					while( $rowAllProvinces = mysqli_fetch_array( $passQuery))
 					{ 
 						++$inc;
 						
@@ -190,17 +193,19 @@
 						var cell6 = row.insertCell();
 						var cell7 = row.insertCell();
 						var cell8 = row.insertCell();
+						var cell9 = row.insertCell();
 						
 						
-	
+						
 						cell1.outerHTML = '<th>' + ".$inc." + '</th>';
 						cell2.innerHTML = '".$rowAllProvinces['price']."';
 						cell3.innerHTML = '".$rowAllProvinces['rating']."';
 						cell4.innerHTML = '".$rowAllProvinces['descr']."';
 						cell5.innerHTML = '".$rowAllProvinces['title']."';
 						cell6.innerHTML = '".$rowAllProvinces['type']."';
-						cell7.innerHTML = '".$rowAllProvinces['date']."';
-						cell8.innerHTML = '".$rowAllProvinces['cType']."';";
+						cell7.innerHTML = '".$rowAllProvinces['startDate']."';
+						cell8.innerHTML = '".$rowAllProvinces['endDate']."';
+						cell9.innerHTML = '".$rowAllProvinces['cType']."';";
 					};
 				echo "</script>	   ";
 			}
