@@ -369,6 +369,7 @@
 					echo "connection failed to address";
 					return false;
 				}
+                echo "<script>window.location.href=window.location.href;</script>";
 			}
 
 		?>
