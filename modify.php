@@ -14,43 +14,57 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a class="navbar-brand" href="#">NavBar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="index.php">NavBar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="sell.php">Sell</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Buy <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="buy_user.php">Buy (User)</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="index.php?logout">
-            <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
-        </form>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buy.php">Buy</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="buy_user.php">Buy (User)<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sell
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="sell_clothes.php">Clothes</a>
+                        <a class="dropdown-item" href="sell_books.php">Books</a>
+                        <a class="dropdown-item" href="sell_musical_instruments.php">Musical Instruments</a>
+                        <a class="dropdown-item" href="sell_electronics.php">Electronics</a>
+                    </div>
+                </li>
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="report1.php">Report 1</a>
+							<a class="dropdown-item" href="report2.php">Report 2</a>
+							<a class="dropdown-item" href="report3.php">Report 3</a>
+							<a class="dropdown-item" href="report4.php">Report 4</a>
+							<a class="dropdown-item" href="report5.php">Report 5</a>
+							<a class="dropdown-item" href="report6.php">Report 6</a>
+							<a class="dropdown-item" href="report7.php">Report 7</a>
+							<a class="dropdown-item" href="report8.php">Report 8</a>
+							<a class="dropdown-item" href="report9.php">Report 9</a>
+							<a class="dropdown-item" href="report10.php">Report 10</a>
+                        </div>
+                    </li>				
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="index.php?logout">
+                <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
+            </form>
+        </div>
+    </nav>
 <?php
 // Attempt MySQL server connection
 $link = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");

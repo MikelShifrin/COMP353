@@ -36,6 +36,23 @@
                             <a class="dropdown-item" href="admin_electronics.php">Electronics</a>
                         </div>
                     </li>
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="report1.php">Report 1</a>
+							<a class="dropdown-item" href="report2.php">Report 2</a>
+							<a class="dropdown-item" href="report3.php">Report 3</a>
+							<a class="dropdown-item" href="report4.php">Report 4</a>
+							<a class="dropdown-item" href="report5.php">Report 5</a>
+							<a class="dropdown-item" href="report6.php">Report 6</a>
+							<a class="dropdown-item" href="report7.php">Report 7</a>
+							<a class="dropdown-item" href="report8.php">Report 8</a>
+							<a class="dropdown-item" href="report9.php">Report 9</a>
+							<a class="dropdown-item" href="report10.php">Report 10</a>
+                        </div>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="index.php?logout">
                     <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
