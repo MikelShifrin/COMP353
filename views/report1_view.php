@@ -81,9 +81,6 @@
           ?>
 
           <div class=container>
-              <div class="page-header">
-                  <h1>Report 1</h1>
-              </div>
 
                   <?php
                   // Attempt select query execution

@@ -78,9 +78,6 @@
       ?>
 
       <div class=container>
-          <div class="page-header">
-              <h1>Report 13</h1>
-          </div>
               <?php
               // Attempt select query execution
               $sql = "SELECT MusicalInstruments.*

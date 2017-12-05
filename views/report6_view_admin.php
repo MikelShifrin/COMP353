@@ -69,9 +69,6 @@
         </div>
 
         <div class=container>
-            <div class="page-header">
-                <h1>Report 6</h1>
-            </div>
             <code>
                 SELECT Booking.totalRev FROM Booking, StrategicLocation1, StrategicLocation2, StrategicLocation3, StrategicLocation4, forSL1, forSL2, forSL3, forSL4<br>
                 WHERE StrategicLocation1.owner = forSL1.owner AND forSL1.bookID = Booking.bookID OR  StrategicLocation2.owner = forSL2.owner AND forSL2.bookID = Booking.bookID OR  StrategicLocation3.owner = forSL3.owner AND forSL3.bookID = Booking.bookID OR

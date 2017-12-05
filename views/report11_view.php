@@ -84,9 +84,6 @@
         ?>
 
         <div class=container>
-            <div class="page-header">
-                <h1>Report 11</h1>
-            </div>
                 <?php
                 // Attempt select query execution
                 $sql = "SELECT Clothes.*

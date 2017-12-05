@@ -79,9 +79,6 @@
         ?>
 
         <div class=container>
-            <div class="page-header">
-                <h1>Report 4</h1>
-            </div>
             <?php
             echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
             echo "<tr>";

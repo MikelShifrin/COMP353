@@ -78,9 +78,6 @@
           ?>
 
           <div class=container>
-              <div class="page-header">
-                  <h1>Report 5</h1>
-              </div>
               <code>
                   SELECT User.* FROM User<br/>
                   WHERE uID IN ((<br/>

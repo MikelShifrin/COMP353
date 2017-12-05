@@ -69,9 +69,6 @@
         </div>
 
         <div class=container>
-            <div class="page-header">
-                <h1>Report 7</h1>
-            </div>
             <code>
                 SELECT SL1.price<br>
                 FROM StrategicLocation1, Booking, forSL1<br>
