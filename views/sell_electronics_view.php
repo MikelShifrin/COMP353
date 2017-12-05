@@ -370,7 +370,7 @@
 					echo "connection failed to address";
 					return false;
 				}
-                echo "<script>window.location.href=window.location.href;</script>";        
+                echo "<script>window.location.href=window.location.href;</script>";
 			}
 
 		?>
@@ -381,13 +381,21 @@
             $db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
             if (isset($_POST['btn'])) {
                 $eID = $_POST['btn'];
+
+                $queryGetElec = "SELECT Ad.addressID FROM Electronics INNER JOIN Ad ON Electronics.eID=Ad.eID";
+                $ret2 = mysqli_query($db_connection, $queryGetElec);
+                $rowAllProvinces = mysqli_fetch_array( $ret2);
+
                 $queryDeleteElec = "delete from Electronics where eID = '" . $eID . "'";
                 $queryDeleteAd = "delete from Ad where eID = '" . $eID . "'";
+                $queryDeleteAddress = "DELETE FROM Address WHERE addressID='".$rowAllProvinces['addressID']."'";
+
 
                 $ret = mysqli_query($db_connection, $queryDeleteElec);
                 $ret1 = mysqli_query($db_connection, $queryDeleteAd);
+                $ret3 = mysqli_query($db_connection, $queryDeleteAddress);
 
-
+                echo "<script>window.location.href=window.location.href;</script>";
             }
         }
         deleteAd();

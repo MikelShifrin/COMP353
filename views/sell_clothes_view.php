@@ -379,13 +379,20 @@
             $db_connection = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
             if (isset($_POST['btn'])) {
                 $cID = $_POST['btn'];
+
+                $queryGetClothes = "SELECT Ad.addressID FROM Clothes INNER JOIN Ad ON Clothes.cID=Ad.cID";
+                $ret2 = mysqli_query($db_connection, $queryGetClothes);
+                $rowAllProvinces = mysqli_fetch_array( $ret2);
+
                 $queryDeleteClothes = "delete from Clothes where cID = '" . $cID . "'";
                 $queryDeleteAd = "delete from Ad where cID = '" . $cID . "'";
+                $queryDeleteAddress = "DELETE FROM Address WHERE addressID='".$rowAllProvinces['addressID']."'";
 
                 $ret = mysqli_query($db_connection, $queryDeleteClothes);
                 $ret1 = mysqli_query($db_connection, $queryDeleteAd);
+                $ret3 = mysqli_query($db_connection, $queryDeleteAddress);
 
-
+                echo "<script>window.location.href=window.location.href;</script>";
             }
         }
         deleteAd();
