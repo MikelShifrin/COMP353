@@ -58,7 +58,7 @@ if($link === false){
 }
 ?>
 
-<div class="content">
+<div class="container">
     <form name="find" action="<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
         <fieldset>
             <legend>Buy an Ad</legend>
@@ -88,7 +88,7 @@ if($link === false){
         <button type = "reset" value = "Reset">Clear</button>
     </form>
     <br />
-
+    <div class=container>
 <?php
 // Attempt select query execution
 if (isset($_POST['submit_btn'])) {
@@ -106,7 +106,7 @@ if (isset($_POST['submit_btn'])) {
         WHERE Ad.addressID = Address.addressID AND Books.bID = Ad.bID AND Address.cityName = '" . $city . "' AND Ad.bID IS NOT NULL";
         if ($result = mysqli_query($link, $sql)) {
             if (mysqli_num_rows($result) > 0) {
-                echo "<table class=\"sortable\" style=\"width:100 %; text-align:center\">";
+                echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
                 echo "<tr>";
                 echo "<th>Title</th>";
                 echo "<th>Description</th>";
@@ -255,6 +255,6 @@ if (isset($_POST['submit_btn'])) {
 // Close connection
 mysqli_close($link);
 ?>
-
+    </div>
 </body>
 </html>

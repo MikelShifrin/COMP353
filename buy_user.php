@@ -65,7 +65,7 @@ if ($link === false) {
 }
 ?>
 
-<div class="content">
+<div class="container">
     <form name="find" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <fieldset>
             <legend>Buy an Ad (User)</legend>
@@ -77,14 +77,14 @@ if ($link === false) {
         <button type="reset" value="Reset">Clear</button>
     </form>
     <br/>
-
+    <div class=container>
     <?php
     // Attempt select query execution
     if (isset($_POST['submit_btn'])) {
     //Initializing variable
     $email = $_POST['email'];
 
-    echo "<table class=\"sortable\" style=\"width:100 %; text-align:center\">";
+    echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
     echo "<tr>";
     echo "<th>Title</th>";
     echo "<th>Description</th>";
@@ -198,6 +198,6 @@ if ($link === false) {
     // Close connection
     mysqli_close($link);
     ?>
-
+    </div>
 </body>
 </html>
