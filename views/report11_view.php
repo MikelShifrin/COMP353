@@ -68,7 +68,7 @@
             </div>
         </nav>
         <div class="jumbotron">
-          <h1 class="display-3">Report 2</h1>
+          <h1 class="display-3">Report 11</h1>
 
           <hr class="my-4">
           <p class="lead"></p>
@@ -85,26 +85,27 @@
 
         <div class=container>
             <div class="page-header">
-                <h1>Report 2</h1>
+                <h1>Report 11</h1>
             </div>
                 <?php
-
-                echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
-                echo "<tr>";
-                echo "<th>Title</th>";
-                echo "<th>Description</th>";
-                echo "<th>Type</th>";
-                echo "<th>Rating</th>";
-                echo "<th>Date</th>";
-                echo "<th>Price</th>";
-                echo "<th>Subcategory</th>";
-                echo "</tr>";
-
                 // Attempt select query execution
                 $sql = "SELECT Clothes.*
-        	            FROM Clothes
-        	            WHERE DATE_ADD(Clothes.date, INTERVAL 10 DAY) < CURDATE()";
+                        FROM Clothes, Ad
+                        WHERE Clothes.cID = Ad.cID
+                        ORDER BY COUNT(Clothes.price) ASC
+                        LIMIT 1;";
                 if ($result = mysqli_query($link, $sql)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
+                        echo "<tr>";
+                        echo "<th>Title</th>";
+                        echo "<th>Description</th>";
+                        echo "<th>Type</th>";
+                        echo "<th>Rating</th>";
+                        echo "<th>Date</th>";
+                        echo "<th>Price</th>";
+                        echo "<th>Subcategory</th>";
+                        echo "</tr>";
                         while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
                             echo "<td>" . $row['title'] . "</td>";
@@ -116,71 +117,18 @@
                             echo "<td>Clothes</td>";
                             echo "</tr>";
                         }
-                }
-                $sql2 = "SELECT Books.*
-        	            FROM Books
-        	            WHERE DATE_ADD(Books.date, INTERVAL 10 DAY) < CURDATE()";
-                if ($result2 = mysqli_query($link, $sql2)) {
-                    while ($row = mysqli_fetch_array($result2)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['title'] . "</td>";
-                        echo "<td>" . $row['descr'] . "</td>";
-                        echo "<td>" . $row['type'] . "</td>";
-                        echo "<td>" . $row['rating'] . "</td>";
-                        echo "<td>" . $row['date'] . "</td>";
-                        echo "<td>$" . $row['price'] . "</td>";
-                        echo "<td>Books</td>";
-                        echo "</tr>";
+                        echo "</table>";
+                        // Close result set
+                        mysqli_free_result($result);
+                    } else {
+                        echo "No records matching your query were found.";
                     }
+                } else {
+                    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
                 }
-                $sql3 = "SELECT Electronics.*
-        	            FROM Electronics
-        	            WHERE DATE_ADD(Electronics.date, INTERVAL 10 DAY) < CURDATE()";
-                if ($result3 = mysqli_query($link, $sql3)) {
-                    while ($row = mysqli_fetch_array($result3)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['title'] . "</td>";
-                        echo "<td>" . $row['descr'] . "</td>";
-                        echo "<td>" . $row['type'] . "</td>";
-                        echo "<td>" . $row['rating'] . "</td>";
-                        echo "<td>" . $row['date'] . "</td>";
-                        echo "<td>$" . $row['price'] . "</td>";
-                        echo "<td>Electronics</td>";
-                        echo "</tr>";
-                    }
-                }
-                $sql4 = "SELECT MusicalInstruments.*
-        	            FROM MusicalInstruments
-        	            WHERE DATE_ADD(MusicalInstruments.date, INTERVAL 10 DAY) < CURDATE()";
-                if ($result4 = mysqli_query($link, $sql4)) {
-                    while ($row = mysqli_fetch_array($result4)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['title'] . "</td>";
-                        echo "<td>" . $row['descr'] . "</td>";
-                        echo "<td>" . $row['type'] . "</td>";
-                        echo "<td>" . $row['rating'] . "</td>";
-                        echo "<td>" . $row['date'] . "</td>";
-                        echo "<td>$" . $row['price'] . "</td>";
-                        echo "<td>Musical Instruments</td>";
-                        echo "</tr>";
-                    }
-                }
-                echo "</table>";
-
-                if (mysqli_num_rows($result) == 0 && mysqli_num_rows($result2) == 0 && mysqli_num_rows($result3) == 0 && mysqli_num_rows($result4) == 0) {
-                    echo "No records matching your query were found.";
-                }
-
-                // Close result set
-                mysqli_free_result($result);
-                mysqli_free_result($result2);
-                mysqli_free_result($result3);
-                mysqli_free_result($result4);
-
                 // Close connection
                 mysqli_close($link);
                 ?>
 
             </div>
-
     </body>

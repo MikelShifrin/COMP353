@@ -6,7 +6,7 @@
 		<title>Homepage</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        
+
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -56,8 +56,11 @@
 							<a class="dropdown-item" href="report8.php">Report 8</a>
 							<a class="dropdown-item" href="report9.php">Report 9</a>
 							<a class="dropdown-item" href="report10.php">Report 10</a>
+                            <a class="dropdown-item" href="report11.php">Report 11</a>
+                            <a class="dropdown-item" href="report12.php">Report 12</a>
+                            <a class="dropdown-item" href="report13.php">Report 13</a>
                         </div>
-                    </li>					
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="index.php?logout">
                     <a href="index.php?logout" class="btn btn-outline-dark">Logout</a>
@@ -66,9 +69,108 @@
         </nav>
         <div class="jumbotron">
           <h1 class="display-3">Report 4</h1>
-		  
-          <hr class="my-4">	
+
+          <hr class="my-4">
           <p class="lead"></p>
         </div>
-    </body>
 
+        <?php
+        // Attempt MySQL server connection
+        $link = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
+
+        // Check connection
+        if($link === false){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+        }
+        ?>
+
+        <div class=container>
+            <div class="page-header">
+                <h1>Report 4</h1>
+            </div>
+            <?php
+            echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
+            echo "<tr>";
+            echo "<th>ID</th>";
+            echo "<th>Title</th>";
+            echo "<th>Description</th>";
+            echo "<th>Rating</th>";
+            echo "<th>Price</th>";
+            echo "<th>Subcategory</th>";
+            echo "</tr>";
+
+            // Attempt select query execution
+            $sql = "SELECT *
+        	        FROM Cars";
+            if ($result = mysqli_query($link, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['carID'] . "</td>";
+                    echo "<td>" . $row['title'] . "</td>";
+                    echo "<td>" . $row['descr'] . "</td>";
+                    echo "<td>" . $row['rating'] . "</td>";
+                    echo "<td>$" . $row['price'] . "</td>";
+                    echo "<td>Cars</td>";
+                    echo "</tr>";
+                }
+            }
+            $sql2 = "SELECT *
+        	          FROM Apartments";
+            if ($result2 = mysqli_query($link, $sql2)) {
+                while ($row = mysqli_fetch_array($result2)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['apID'] . "</td>";
+                    echo "<td>" . $row['title'] . "</td>";
+                    echo "<td>" . $row['descr'] . "</td>";
+                    echo "<td>" . $row['rating'] . "</td>";
+                    echo "<td>$" . $row['price'] . "</td>";
+                    echo "<td>Apartments</td>";
+                    echo "</tr>";
+                }
+            }
+            $sql3 = "SELECT *
+        	        FROM RentElectronics";
+            if ($result3 = mysqli_query($link, $sql3)) {
+                while ($row = mysqli_fetch_array($result3)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['reID'] . "</td>";
+                    echo "<td>" . $row['title'] . "</td>";
+                    echo "<td>" . $row['descr'] . "</td>";
+                    echo "<td>" . $row['rating'] . "</td>";
+                    echo "<td>$" . $row['price'] . "</td>";
+                    echo "<td>Rent Electronics</td>";
+                    echo "</tr>";
+                }
+            }
+            $sql4 = "SELECT *
+        	          FROM WeddingDresses";
+            if ($result4 = mysqli_query($link, $sql4)) {
+                while ($row = mysqli_fetch_array($result4)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['wdID'] . "</td>";
+                    echo "<td>" . $row['title'] . "</td>";
+                    echo "<td>" . $row['descr'] . "</td>";
+                    echo "<td>" . $row['rating'] . "</td>";
+                    echo "<td>$" . $row['price'] . "</td>";
+                    echo "<td>Wedding Dresses</td>";
+                    echo "</tr>";
+                }
+            }
+            echo "</table>";
+
+            if (mysqli_num_rows($result) == 0 && mysqli_num_rows($result2) == 0 && mysqli_num_rows($result3) == 0 && mysqli_num_rows($result4) == 0) {
+                echo "No records matching your query were found.";
+            }
+
+            // Close result set
+            mysqli_free_result($result);
+            mysqli_free_result($result2);
+            mysqli_free_result($result3);
+            mysqli_free_result($result4);
+
+            // Close connection
+            mysqli_close($link);
+            ?>
+
+        </div>
+    </body>

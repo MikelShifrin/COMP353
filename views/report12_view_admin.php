@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Home </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,34 +62,68 @@
             </div>
         </nav>
         <div class="jumbotron">
-          <h1 class="display-3">Report 8</h1>
+          <h1 class="display-3">Report 12</h1>
 
           <hr class="my-4">
           <p class="lead"></p>
-        </div>
+      </div>
+      <?php
+      // Attempt MySQL server connection
+      $link = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
 
-        <div class=container>
-            <div class="page-header">
-                <h1>Report 8</h1>
-            </div>
-            <code>
-                SELECT Booking.listItems<br>
-                FROM StrategicLocation1, Booking, forSL1<br>
-                WHERE StrategicLocation1.owner = forSL1.owner AND StrategicLocation1.desc =  'PROVINCE'  AND forSL1.bookID = Booking.bookID<br>
-                <br>
-                SELECT Booking.listItems<br>
-                FROM StrategicLocation2, Booking, forSL2<br>
-                WHERE StrategicLocation2.owner = forSL2.owner AND StrategicLocation2.desc =  'PROVINCE'  AND forSL2.bookID = Booking.bookID<br>
-                <br>
-                SELECT Booking.listItems<br>
-                FROM StrategicLocation3, Booking, forSL3<br>
-                WHERE StrategicLocation3.owner = forSL3.owner AND StrategicLocation3.desc =  'PROVINCE'  AND forSL3.bookID = Booking.bookID<br>
-                <br>
-                SELECT Booking.listItems<br>
-                FROM StrategicLocation4, Booking, forSL4<br>
-                WHERE StrategicLocation4.owner = forSL4.owner AND StrategicLocation4.desc =  'PROVINCE'  AND forSL4.bookID = Booking.bookID<br>
-                <br>
-            </code>
+      // Check connection
+      if($link === false){
+          die("ERROR: Could not connect. " . mysqli_connect_error());
+      }
+      ?>
 
-            </div>
+      <div class=container>
+          <div class="page-header">
+              <h1>Report 12</h1>
+          </div>
+              <?php
+              // Attempt select query execution
+              $sql = "SELECT Electronics.*
+                      FROM Electronics, Ad
+                      WHERE Electronics.eID = Ad.eID
+                      ORDER BY COUNT(Electronics.price) ASC
+                      LIMIT 1;";
+              if ($result = mysqli_query($link, $sql)) {
+                  if (mysqli_num_rows($result) > 0) {
+                      echo "<table class=\"table table-hover table-bordered table-responsive table-striped\" id=\"table\">";
+                      echo "<tr>";
+                      echo "<th>Title</th>";
+                      echo "<th>Description</th>";
+                      echo "<th>Type</th>";
+                      echo "<th>Rating</th>";
+                      echo "<th>Date</th>";
+                      echo "<th>Price</th>";
+                      echo "<th>Subcategory</th>";
+                      echo "</tr>";
+                      while ($row = mysqli_fetch_array($result)) {
+                          echo "<tr>";
+                          echo "<td>" . $row['title'] . "</td>";
+                          echo "<td>" . $row['descr'] . "</td>";
+                          echo "<td>" . $row['type'] . "</td>";
+                          echo "<td>" . $row['rating'] . "</td>";
+                          echo "<td>" . $row['date'] . "</td>";
+                          echo "<td>$" . $row['price'] . "</td>";
+                          echo "<td>Electronics</td>";
+                          echo "</tr>";
+                      }
+                      echo "</table>";
+                      // Close result set
+                      mysqli_free_result($result);
+                  } else {
+                      echo "No records matching your query were found.";
+                  }
+              } else {
+                  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+              }
+              // Close connection
+              mysqli_close($link);
+              ?>
+
+          </div>
+
     </body>

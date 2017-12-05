@@ -12,10 +12,10 @@ require_once("classes/Login.php");
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
 		if($login->isAdmin()){
-			include("views/report7_view_admin.php");
+			include("views/report13_view_admin.php");
 		}
 		else{
-			include("views/report7_view.php");
+			include("views/report13_view.php");
 		}
 
 
