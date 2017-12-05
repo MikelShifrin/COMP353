@@ -20,8 +20,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,9 +34,10 @@
                             <a class="dropdown-item" href="admin_electronics.php">Electronics</a>
                         </div>
                     </li>
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Reports
+							<span class="sr-only">(current)</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="report1.php">Report 1</a>
@@ -58,8 +59,7 @@
             </div>
         </nav>
         <div class="jumbotron">
-          <h1 class="display-3">Welcome Administrator!</h1>
-		  <p class="lead">Hey, Admin: <?php echo $_SESSION['user_email']; ?>. You are logged in.</p>
+          <h1 class="display-3">Report 2</h1>
           <hr class="my-4">	
           <p class="lead"></p>
         </div>

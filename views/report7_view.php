@@ -13,30 +13,37 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="index.php">NavBar</a>
+            <a class="navbar-brand" href="#">NavBar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buy.php">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buy_user.php">Buy (User)</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            View Ads
+                            Sell
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="admin_clothes.php">Clothes</a>
-                            <a class="dropdown-item" href="admin_books.php">Books</a>
-                            <a class="dropdown-item" href="admin_musical_instruments.php">Musical Instruments</a>
-                            <a class="dropdown-item" href="admin_electronics.php">Electronics</a>
+                            <a class="dropdown-item" href="sell_clothes.php">Clothes</a>
+                            <a class="dropdown-item" href="sell_books.php">Books</a>
+                            <a class="dropdown-item" href="sell_musical_instruments.php">Musical Instruments</a>
+                            <a class="dropdown-item" href="sell_electronics.php">Electronics</a>
                         </div>
                     </li>
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Reports
+							<span class="sr-only">(current)</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="report1.php">Report 1</a>
@@ -58,8 +65,8 @@
             </div>
         </nav>
         <div class="jumbotron">
-          <h1 class="display-3">Welcome Administrator!</h1>
-		  <p class="lead">Hey, Admin: <?php echo $_SESSION['user_email']; ?>. You are logged in.</p>
+          <h1 class="display-3">Report 7</h1>
+		  
           <hr class="my-4">	
           <p class="lead"></p>
         </div>
