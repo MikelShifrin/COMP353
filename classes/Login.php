@@ -123,4 +123,24 @@ class Login
         // default return
         return false;
     }
+	public function isAdmin()
+	{
+		$this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		if($_SESSION['user_login_status'] == 1){
+                
+				$sql = "SELECT isAdmin
+                        FROM User
+                        WHERE email = '" . $_SESSION['user_email'] . "';";
+                $result_of_admin_check = $this->db_connection->query($sql);
+				$result_row = $result_of_admin_check->fetch_object();
+				if($result_row->isAdmin == '1'){
+					return true;
+				}
+				else{
+					return false;
+				}
+					
+		}
+	
+	}
 }

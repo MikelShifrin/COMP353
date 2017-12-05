@@ -53,7 +53,7 @@
 </nav>
 <?php
 // Attempt MySQL server connection
-$link = new mysqli("127.0.0.1", "tvc353_2", "iLcS2017", "tvc353_2");
+$link = new mysqli("tvc353_2.encs.concordia.ca", "tvc353_2", "iLcS2017", "tvc353_2");
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -151,7 +151,6 @@ if (isset($_POST['submit_btn'])) {
         }
 
     else
-
     {
 
         // if the 'id' isn't valid, display error
